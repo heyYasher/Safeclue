@@ -1,0 +1,7 @@
+{
+  "name": "SafeClue - Construction Project Tracker",
+  "description": "A comprehensive app for clients and engineers to track construction projects, book demos, view live progress, and manage project updates. This application provides role-based access for users, engineers, and a super admin.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

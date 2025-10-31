@@ -1,0 +1,50 @@
+
+
+
+import React, { useState } from 'react';
+import { SafeClueLogo } from '../shared/icons';
+
+interface ForgotPasswordScreenProps {
+  onResetPassword: (mobile: string) => void;
+  onNavigateToLogin: () => void;
+}
+
+const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ onResetPassword, onNavigateToLogin }) => {
+    const [mobile, setMobile] = useState('');
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onResetPassword(mobile);
+    };
+    
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-slate-100 p-4">
+            <div className="max-w-md w-full mx-auto bg-white rounded-2xl shadow-xl p-8">
+                <div className="text-center mb-8">
+                    <SafeClueLogo className="w-24 h-24 mx-auto" />
+                    <h1 className="text-3xl font-bold text-slate-800 mt-4">Forgot Password?</h1>
+                    <p className="text-slate-600 mt-2">Enter your mobile number to receive a verification code.</p>
+                </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="mobile-forgot" className="block text-sm font-medium text-slate-700">Mobile Number</label>
+                        <input type="tel" id="mobile-forgot" value={mobile} onChange={(e) => setMobile(e.target.value)} required className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm text-slate-900 focus:outline-none focus:ring-brand-blue focus:border-brand-blue"/>
+                    </div>
+                    <div>
+                        <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-blue hover:bg-brand-blue-dark">
+                           Send OTP
+                        </button>
+                    </div>
+                </form>
+                <p className="mt-6 text-center text-sm text-slate-600">
+                    Remember your password?{' '}
+                    <button onClick={onNavigateToLogin} className="font-medium text-brand-blue hover:text-brand-blue-dark">
+                        Sign in
+                    </button>
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default ForgotPasswordScreen;
